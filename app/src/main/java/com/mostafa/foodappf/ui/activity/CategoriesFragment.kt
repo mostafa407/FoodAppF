@@ -1,6 +1,5 @@
 package com.mostafa.foodappf.ui.activity
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -44,7 +43,7 @@ class CategoriesFragment:Fragment(),OnListItemClick{
         if (toolbar != null) {
         }
         viewModel.category.observe(viewLifecycleOwner, Observer { categories ->
-            categoryRecyclerView.setList(categories.categories)
+            categoryRecyclerView.list=categories.categories
             Log.d("main", categories.toString())
         })
         categoryRecyclerView.onListItemClick=this

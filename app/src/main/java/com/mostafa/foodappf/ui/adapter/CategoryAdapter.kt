@@ -8,7 +8,7 @@ import com.bumptech.glide.Glide
 import com.mostafa.foodappf.data.model.Categories
 import com.mostafa.foodappf.databinding.ListItemBinding
 
-class CategoryAdapter( list:ArrayList<Categories.Category>) :
+class CategoryAdapter(var  list:ArrayList<Categories.Category>) :
     RecyclerView.Adapter<CategoryAdapter.CategoryViewHolder>() {
   var onListItemClick:OnListItemClick?=null
     inner  class CategoryViewHolder(val listItemBinding: ListItemBinding):
@@ -20,17 +20,12 @@ class CategoryAdapter( list:ArrayList<Categories.Category>) :
               .into(listItemBinding.strCategoryThumb)
           listItemBinding.strCategory.text = item.strCategory
           itemView.setOnClickListener {
-//              onListItemClick?.onItemClick(item)
               onListItemClick?.onItem(item)
           }
 
       }
     }
-    var categoryList=ArrayList<Categories.Category>()
-    fun setList(list:ArrayList<Categories.Category>){
-        this.categoryList=list
-        notifyDataSetChanged()
-    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): CategoryViewHolder {
 
         val layoutInflater = LayoutInflater.from(parent.context)
@@ -40,12 +35,12 @@ class CategoryAdapter( list:ArrayList<Categories.Category>) :
     }
 
     override fun getItemCount(): Int {
-        Log.d("COUNT", ".getItemCountcalled ${categoryList.size}")
+        Log.d("COUNT", ".getItemCountcalled ${list.size}")
 
-        return categoryList.size
+        return list.size
     }
 
     override fun onBindViewHolder(holder: CategoryViewHolder, position: Int) {
-        holder.bind(categoryList[position])
+        holder.bind(list[position])
     }
 }

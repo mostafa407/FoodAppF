@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.GridLayoutManager
 import com.mostafa.foodappf.R
 import com.mostafa.foodappf.data.model.Meals
-import com.mostafa.foodappf.data.netWorking.category.RetrofitBuilder
 import com.mostafa.foodappf.data.netWorking.meal.ApiHelperMeal
 import com.mostafa.foodappf.data.netWorking.meal.ApiMealsBuilder
 import com.mostafa.foodappf.databinding.FragmentMealsBinding
@@ -39,7 +38,7 @@ var mealsAdapter:MealAdapter=MealAdapter(mealList)
         binding.lifecycleOwner=this
         val toolbar = binding.toolbarMeal
         viewModel.meals.observe(viewLifecycleOwner, Observer {meals->
-            mealsAdapter.setMeal(meals.meals)
+            mealsAdapter.list=meals.meals
         })
         mealsAdapter.onListClick=this
         return view
@@ -63,10 +62,6 @@ var mealsAdapter:MealAdapter=MealAdapter(mealList)
             transaction?.replace(R.id.fram,DetailFragment())
             transaction?.disallowAddToBackStack()
             transaction?.commit()
-//        val mFragmentManager = supportFragmentManager
-//        val mFragmentTransaction = mFragmentManager.beginTransaction()
-//        val mFragment = CategoriesFragment()
-//        mFragmentTransaction.add(R.id.fram, mFragment).commit()
 
     }
 

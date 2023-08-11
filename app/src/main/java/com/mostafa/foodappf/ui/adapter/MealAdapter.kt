@@ -8,7 +8,7 @@ import com.mostafa.foodappf.data.model.Categories
 import com.mostafa.foodappf.data.model.Meals
 import com.mostafa.foodappf.databinding.ListMealBinding
 
-class MealAdapter(list:ArrayList<Meals.Meal>):
+class MealAdapter(var list:ArrayList<Meals.Meal>):
     RecyclerView.Adapter<MealAdapter.MealViewHolder>() {
     var onListClick:OnListClick?=null
     inner class MealViewHolder(val listMealBinding: ListMealBinding)
@@ -24,11 +24,7 @@ class MealAdapter(list:ArrayList<Meals.Meal>):
 
         }
     }
-    var mealList=ArrayList<Meals.Meal>()
-    fun setMeal(list:ArrayList<Meals.Meal>){
-        this.mealList=list
-        notifyDataSetChanged()
-    }
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MealViewHolder {
         val layoutInflater=LayoutInflater.from(parent.context)
@@ -37,10 +33,10 @@ class MealAdapter(list:ArrayList<Meals.Meal>):
     }
 
     override fun getItemCount(): Int {
-        return mealList.size
+        return list.size
     }
 
     override fun onBindViewHolder(holder: MealViewHolder, position: Int) {
-        holder.bind(mealList[position])
+        holder.bind(list[position])
     }
 }

@@ -6,6 +6,6 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 
 interface ApiDetails {
-    @GET("api/json/v1/1/lookup.php{i}")
+    @GET("api/json/v1/1/lookup.php?i=52874:{52874}")
     suspend fun getDetail(@Query("i")i:Int):Response<Details>
 }
