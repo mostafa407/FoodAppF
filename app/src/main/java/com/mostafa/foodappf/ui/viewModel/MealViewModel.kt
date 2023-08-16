@@ -10,12 +10,10 @@ import kotlinx.coroutines.launch
 
 class MealViewModel(private val mealRepository: MealRepository): ViewModel() {
     val meals=MutableLiveData<Meals>()
-    init {
-        getMeal()
-    }
-    fun getMeal(){
+
+    fun getMeal(c:String){
         viewModelScope.launch {
-            val respone=mealRepository.getMeals()
+            val respone=mealRepository.getMeals(c)
             if (respone.isSuccessful){
                 meals.postValue(respone.body())
                 Log.d("vi",respone.body().toString())

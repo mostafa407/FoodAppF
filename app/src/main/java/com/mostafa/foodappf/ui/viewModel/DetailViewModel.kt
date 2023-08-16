@@ -9,17 +9,17 @@ import kotlinx.coroutines.launch
 
 class DetailViewModel(private val detailRepository: DetailRepository):ViewModel() {
     val details=MutableLiveData<Details>()
-    init {
-        getDetail()
+
+
+     fun getDetail(i: Int) {
+        viewModelScope.launch {
+            val response=detailRepository.getDetail(i)
+            if (response.isSuccessful){
+                details.postValue(response.body())
+            }
     }
 
-    fun getDetail() {
-        viewModelScope.launch {
-            val response=detailRepository.getDetail()
-            if (response.isSuccessful){
-            details.postValue(response.body())
-            }
-        }
+
 
     }
 }
